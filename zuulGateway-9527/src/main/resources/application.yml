@@ -1,0 +1,26 @@
+
+server:
+  port: 9527
+spring:
+  application:
+    name: jiaoyu-zuul-gateway
+eureka:
+  client:
+    service-url:
+      #defaultZone: http://localhost:7001/eureka
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
+  instance:
+    instance-id: gateway-9527
+    prefer-ip-address: true
+info:
+  app.name: jiaoyu-cloud-gateway-9527
+  company-name: www.jiaoyu.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+zuul:
+  ###删除原访问路径
+  ignored-services: "*"
+  routes:
+    mydept.serviceId: DEPT-SERVICE
+    ###使用自定义的命名，用于访问指定的服务
+    mydept.path: /mydept/**
